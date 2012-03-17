@@ -30,3 +30,4 @@ Yes, the widget can be embedded multiple times on the same page.
 == Screenshots ==
 
 1. StackTack icon in the editing toolbar.
+2. An instance of StackTack in a post.
