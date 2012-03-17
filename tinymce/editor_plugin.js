@@ -24,14 +24,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         // Called to initialize the plugin
         init: function(editor, url) {
             
+            // Register the mceStackTack command
+            editor.addCommand('mceStackTack', function() {
+                
+                // Open the editor window
+                editor.windowManager.open({
+                    id: 'stacktack-dialog',
+                    title:  'Insert StackTack Widget',
+                    width:  460,
+                    height: 140,
+                    wpDialog: true
+                }, {
+                    plugin_url: url
+                });
+                
+            });
+            
+            // Register the StackTack button in the editor
             editor.addButton('stacktack', {
                 title: 'Insert StackTack Widget',
-                image: url + '/stackexchange.png',
-                onclick: function() {
-                    
-                    editor.windowManager.alert('You clicked the button!');
-                    
-                }
+                cmd:   'mceStackTack',
+                image: url + '/stackexchange.png'
             });
         },
         
@@ -39,11 +52,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         getInfo: function() {
             
             return {
-                longname: 'StackTack Widget',
-                author: 'Nathan Osman',
+                longname:  'StackTack Widget',
+                author:    'Nathan Osman',
                 authorurl: 'http://quickmediasolutions.com/nathan-osman',
-                infourl: 'https://github.com/nathan-osman/StackTack-WordPress-Plugin',
-                version: '1.0'
+                infourl:   'https://github.com/nathan-osman/StackTack-WordPress-Plugin',
+                version:   '1.0'
             };
         }
     });
