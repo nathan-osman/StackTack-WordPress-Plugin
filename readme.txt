@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== StackTack ===
 Contributors: george_edison
 Tags: editor, widget, question
 Requires at least: 3.3
