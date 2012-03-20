@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     
     $(document).ready(function() {
         
-        $('.stacktack').stacktack();
+        $('.stacktack').stacktack({ 'width': 580 });
         
     });
     

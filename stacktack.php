@@ -165,10 +165,15 @@ add_shortcode('stacktack', 'stacktack_shortcode');
 
 function stacktack_enqueuescripts()
 {
+    // Enqueue the scripts
     wp_register_script('stacktack', plugins_url('js/stacktack.min.js', __FILE__), array('jquery'), false, true);
     wp_register_script('stacktack_init', plugins_url('js/stacktack.init.js', __FILE__), array('jquery', 'stacktack'), false, true);
     
     wp_enqueue_script('stacktack_init');
+    
+    // Enqueue the stylesheet
+    wp_register_style('stacktack', plugins_url('css/stacktack.min.css', __FILE__));
+    wp_enqueue_style('stacktack');
 }
 
 // Enqueue the scripts
