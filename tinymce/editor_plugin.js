@@ -44,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             editor.addButton('stacktack', {
                 title: 'Insert StackTack Widget',
                 cmd:   'mceStackTack',
-                image: url + '/stackexchange.png'
+                image: url + '/button.png'
             });
         },
         
