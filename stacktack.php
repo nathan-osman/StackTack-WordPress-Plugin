@@ -4,7 +4,7 @@
 Plugin Name: StackTack
 Plugin URI: https://github.com/nathan-osman/StackTack-WordPress-Plugin
 Description: A WordPress plugin that makes it easy to embed questions from Stack Exchange sites in your blog.
-Version: 1.0
+Version: 1.1
 Author: Nathan Osman
 Author URI: http://quickmediasolutions.com/nathan-osman
 License: GPL2
