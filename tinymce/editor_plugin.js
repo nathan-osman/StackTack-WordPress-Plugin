@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     id: 'stacktack-dialog',
                     title:  'Insert StackTack Widget',
                     width:  460,
-                    height: 140,
+                    height: 'auto',
                     wpDialog: true
                 }, {
                     plugin_url: url

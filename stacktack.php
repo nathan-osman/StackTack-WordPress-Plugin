@@ -4,7 +4,7 @@
 Plugin Name: StackTack
 Plugin URI: https://github.com/nathan-osman/StackTack-WordPress-Plugin
 Description: A WordPress plugin that makes it easy to embed questions from Stack Exchange sites in your blog.
-Version: 1.1
+Version: 1.2
 Author: Nathan Osman
 Author URI: http://quickmediasolutions.com/nathan-osman
 License: GPL2
@@ -71,18 +71,65 @@ class StackTack
     // Writes the contents of the dialog to the page
     static function include_dialog()
     {
-        require 'stacktack_dialog.php';
+?>
+<div style="display:none;">
+    <form id="stacktack-dialog">
+        <p class="howto">Paste a link to the question you would like to embed.</p>
+        <label>
+            <span>URL:</span>
+            <input type="text" id="stacktack-url" autocomplete="off" />
+        </label>
+        <div id="stacktack-url-error" class="stacktack-option stacktack-error" style="display: none;">
+          Please enter a valid URL.
+        </div>
+        <label>
+            <span>Answers:</span>
+            <select id="stacktack-answers">
+                <option value="default">Use Global Default</option>
+                <option value="accepted">Accepted</option>
+                <option value="none">None</option>
+                <option value="all">All</option>
+                <option value="specific">Specific Answer</option>
+            </select>
+        </label>
+        <div id="stacktack-answer-container" class="stacktack-option" style="display: none;"></div>
+        <p class="howto">Specify the display options.</p>
+        <label class="stacktack-option">
+            <input type="checkbox" id="stacktack-hide-question" />
+            Hide the question
+        </label>
+        <label class="stacktack-option">
+            <input type="checkbox" id="stacktack-hide-votes" />
+            Hide the vote totals
+        </label>
+        <div class="submitbox">
+            <a href="#" id="stacktack-cancel"><?php _e( 'Cancel' ); ?></a>
+            <input type="submit" value="Insert" id="stacktack-submit" class="button-primary">
+        </div>
+    </form>
+</div>
+<?php
+        wp_enqueue_style('stacktack-dialog', plugins_url('css/dialog.css', __FILE__));
+        wp_enqueue_script('stacktack-dialog', plugins_url('js/dialog.js', __FILE__));
     }
     
     // Outputs the HTML for the provided shortcode
     static function shortcode($atts)
     {
-        extract(shortcode_atts(array('site' => 'stackoverflow',
-                                     'id'   => FALSE),
+        extract(shortcode_atts(array('answers'      => FALSE,  // FALSE indicates we will use the global default
+                                     'hidequestion' => FALSE,
+                                     'site'         => 'stackoverflow',
+                                     'id'           => FALSE,
+                                     'hidevotes'    => FALSE),
                                $atts));
         
+        // Generate the attributes for this instance
+        $attr  = ($answers)?' data-answers="' . esc_attr($answers) . '"':'';
+        $attr .= ($hidequestion)?' data-question="false"':'';
+        $attr .= ($hidevotes)?' data-votes="false"':'';
+        
         return ($id === FALSE)?'<div><b>StackTack Error:</b> Missing <code>id</code> attribute.</div>':
-            "<div class='stacktack' data-site='$site' data-id='$id'></div>";
+            "<div class='stacktack' data-site='$site' data-id='$id'$attr></div>";
     }
     
     // Enqueues the StackTack scripts and stylesheets
@@ -104,7 +151,7 @@ class StackTack
         
         wp_localize_script('stacktack_init', 'stacktack', $params);
         
-        // Enqueue the stylesheet
+        // Register and enqueue the stylesheet
         wp_register_style('stacktack', plugins_url('css/stacktack.min.css', __FILE__));
         wp_enqueue_style('stacktack');
     }
