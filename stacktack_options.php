@@ -25,6 +25,7 @@ if(!current_user_can('manage_options'))
 <div class="wrap">
   <img src="<?php echo plugins_url('img/icon.png', __FILE__); ?>" class="icon32" />
   <h2>StackTack Options</h2>
+  <p>The options below represent the default settings that will be applied to all StackTack instances. Note that individual instances can override some of these settings.</p>
 <?php
 
 // Check to see if the form has been submitted

@@ -2,8 +2,8 @@
 Contributors: george_edison
 Tags: editor, widget, question
 Requires at least: 3.3
-Tested up to: 3.3
-Stable tag: 1.2
+Tested up to: 3.4.2
+Stable tag: 1.2.1
 
 StackTack is a JavaScript widget that displays questions from Stack Exchange sites.
 
@@ -33,6 +33,10 @@ Yes, the widget can be embedded multiple times on the same page.
 2. An instance of StackTack in a post.
 
 == Changelog ==
+
+= 1.2.1 =
+* Fixed bug that prevented requests to the API from using HTTPS
+* Added a paragraph to the global settings page
 
 = 1.2 =
 * Moved the JS and CSS for the dialog to separate files
